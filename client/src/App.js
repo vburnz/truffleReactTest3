@@ -41,10 +41,10 @@ class App extends Component {
   runExample = async () => {
     const { accounts, contract } = this.state;
 
-    // Stores a given value, 5 by default.
+    // // Stores a given value, 5 by default.
     // await contract.methods.set(5).send({ from: accounts[0] });
 
-    // // Get the value from the contract to prove it worked.
+    // // // Get the value from the contract to prove it worked.
     // const response = await contract.methods.get().call();
 
     
@@ -63,7 +63,7 @@ class App extends Component {
 
   sendMoney = async() => {
     const { accounts, contract } = this.state;
-    await contract.methods.sendMoney('0x67fd37f1078fDCB5FF9D85BacDb8a61aB9f89956', '0xfFda394ec4485BfE9849679666A1aca10A42eD30', 10)
+    await contract.methods.sendMoney('0x67fd37f1078fDCB5FF9D85BacDb8a61aB9f89956', '0xfFda394ec4485BfE9849679666A1aca10A42eD30', 10).send({from: accounts[0]})
     const balance1 = await contract.methods.getBalance('0x67fd37f1078fDCB5FF9D85BacDb8a61aB9f89956').call(); 
     const balance2 = await contract.methods.getBalance('0xfFda394ec4485BfE9849679666A1aca10A42eD30').call();
       console.log(balance1, balance2); 
@@ -74,8 +74,8 @@ class App extends Component {
     const { accounts, contract } = this.state;
     console.log(this.state); 
     console.log('accounts', accounts); 
-    //await contract.methods.mint('0x67fd37f1078fDCB5FF9D85BacDb8a61aB9f89956', 20).send({from: accounts[0]})
-    const minter = await contract.methods.minter(); 
+    await contract.methods.mint('0x67fd37f1078fDCB5FF9D85BacDb8a61aB9f89956', 20).send({from: accounts[0]})
+    const minter = await contract.methods.minter().call(); 
     console.log(minter); 
   }
 

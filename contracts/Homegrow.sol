@@ -19,9 +19,9 @@ contract Homegrow {
 
     function sendMoney(address _sender, address _receiver, uint _amount) public {
         // if (balances[msg.sender] < amount) return; 
-        balances[_sender] -= 10;
-        balances[_receiver] += 10; 
-        emit Sent(_sender, _receiver, _amount); 
+        balances[_sender] -= _amount;
+        balances[_receiver] += _amount; 
+        //emit Sent(_sender, _receiver, _amount); 
     }
 
     function getBalance(address _balancee) public returns (uint) {
